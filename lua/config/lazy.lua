@@ -32,9 +32,9 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
--- Auto open lazy.nvim on startup
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    require("lazy").show()  -- lazy.nvim의 show() 메서드를 호출
-  end,
-})
+-- -- Auto open lazy.nvim on startup
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   callback = function()
+--     require("lazy").show()  -- lazy.nvim의 show() 메서드를 호출
+--   end,
+-- })
