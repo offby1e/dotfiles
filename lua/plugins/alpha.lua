@@ -1150,12 +1150,12 @@ return {
 
       -- stylua: ignore
       dashboard.section.buttons.val = {
-        dashboard.button("f", " " .. " New file", ":enew<CR>"),
-        dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles<CR>"),
-        dashboard.button("g", " " .. " Find file", ":cd $HOME/dev | :Telescope find_files<CR>"),
-        dashboard.button("l", "⚡" .. " Lazy Plugin Manager", ":Lazy<CR>"),
-        dashboard.button("c", " " .. " Configuration", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
-        dashboard.button("q", " " .. " Quit", ":qa<CR>"),
+        dashboard.button("f", "📜 " .. " New file", ":enew<CR>"),
+        dashboard.button("r", "🗂️  " .. " Recent files", ":Telescope oldfiles<CR>"),
+        dashboard.button("g", "🔎 " .. " Find file", ":Telescope find_files<CR>"),
+        dashboard.button("l", "🌩️  " .. " Lazy Plugin Manager", ":Lazy<CR>"),
+        dashboard.button("c", "🛠️  " .. " Configuration", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
+        dashboard.button("q", "🚪 " .. " Quit", ":qa<CR>"),
       }
 
 			dashboard.section.footer.opts.hl = "AlphaFooter"
