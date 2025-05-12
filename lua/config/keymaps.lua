@@ -1,7 +1,26 @@
 local mapKey = require("utils.KeyMapper").mapKey
 
 -- Neotree toggle
-mapKey("<leader>e", ":Neotree toggle<cr>")
+mapKey("<leader>e", function()
+	local is_open = false
+
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		local buf = vim.api.nvim_win_get_buf(win)
+		local bufname = vim.api.nvim_buf_get_name(buf)
+		if bufname:match("neo%-tree") then
+			is_open = true
+			break
+		end
+	end
+
+	vim.cmd("Neotree toggle")
+
+	if is_open then
+		print("📁 Neo-tree closed!")
+	else
+		print("📂 Neo-tree opened!")
+	end
+end)
 
 -- pane navigation
 mapKey("<C-h>", "<C-w>h") --Left
@@ -10,8 +29,18 @@ mapKey("<C-k>", "<C-w>k") --Left
 mapKey("<C-l>", "<C-w>l") --Left
 
 --move directory
-vim.api.nvim_set_keymap("n", "<leader>nc", ":cd /root/.config/nvim<CR>:pwd<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>ws", ":cd /home/rkdgus06/dev<CR>:pwd<CR>", { noremap = true, silent = true })
+-- <leader>nc: 네오빔 설정 디렉토리로 이동
+vim.keymap.set("n", "<leader>nc", function()
+	vim.cmd("cd ~/.config/nvim")
+	print("📁 Changed to Neovim Config")
+end, { noremap = true, silent = true })
+
+-- <leader>ws: 작업 디렉토리로 이동
+vim.keymap.set("n", "<leader>ws", function()
+	vim.cmd("cd /home/rkdgus06/dev")
+	print("📁 Changed to WorkSpace")
+end, { noremap = true, silent = true })
+
 -- buffer
 
 -- 버퍼 탐색

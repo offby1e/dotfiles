@@ -61,7 +61,7 @@ return {
 
 		-- 푸터 설정 (fortune 사용)
 		local fortune = require("alpha.fortune") -- fortune 모듈 사용
-		dashboard.section.footer.val = fortune() -- 푸터에 fortune 내용 설정
+		dashboard.section.footer.val = fortune() -- 푸터에 fortune
 
 		-- 대시보드 설정
 		dashboard.config.opts.noautocmd = true
