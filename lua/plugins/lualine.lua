@@ -4,7 +4,7 @@ return {
 	config = function()
 		require("lualine").setup({
 			options = {
-				theme = "nord", -- 북유럽 테마를 설정
+				theme = "tokyonight", -- 북유럽 테마를 설정
 				section_separators = { "", "" }, -- 섹션 구분 기호
 				component_separators = { "", "" }, -- 컴포넌트 구분 기호
 				globalstatus = true, -- 전체 화면 상태라인 적용
