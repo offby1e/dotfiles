@@ -9,6 +9,9 @@ mapKey("<C-j>", "<C-w>j") --Left
 mapKey("<C-k>", "<C-w>k") --Left
 mapKey("<C-l>", "<C-w>l") --Left
 
+--move directory
+vim.api.nvim_set_keymap("n", "<leader>nc", ":cd /root/.config/nvim<CR>:pwd<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ws", ":cd /home/rkdgus06/dev<CR>:pwd<CR>", { noremap = true, silent = true })
 -- buffer
 
 -- 버퍼 탐색
