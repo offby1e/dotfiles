@@ -18,6 +18,14 @@ opt.number = true
 opt.relativenumber = true
 opt.termguicolors = true
 opt.signcolumn = "yes"
+opt.cursorline = true
+
+-- 현재 커서 라인 번호 강조
+vim.api.nvim_set_hl(0, "CursorLineNr", {
+  fg = "#FFA500", -- 주황색
+  bold = true
+})
+
 
 -- etc
 opt.encoding = "UTF-8"
@@ -28,9 +36,9 @@ opt.mouse:append("a")
 vim.api.nvim_create_augroup("TerminalSettings", { clear = true })
 
 vim.api.nvim_create_autocmd("TermOpen", {
-	group = "TerminalSettings",
-	callback = function()
-		vim.opt_local.number = false
-		vim.opt_local.relativenumber = false
-	end,
+  group = "TerminalSettings",
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+  end,
 })
