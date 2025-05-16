@@ -26,6 +26,7 @@ vim.api.nvim_set_hl(0, "CursorLineNr", {
   bold = true
 })
 
+vim.opt.clipboard = "unnamedplus"
 
 -- etc
 opt.encoding = "UTF-8"

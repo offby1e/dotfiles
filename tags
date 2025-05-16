@@ -1,0 +1,33 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+) builtin.buffers	lua/plugins/telescope.lua	/^      mapKey('<leader>fb', function() builtin.buffers() end)$/;"	f	language:Lua
+) builtin.find_files	lua/plugins/telescope.lua	/^      mapKey('<leader><Space>', function() builtin.find_files() end)$/;"	f	language:Lua
+) builtin.help_tags	lua/plugins/telescope.lua	/^      mapKey('<leader>fh', function() builtin.help_tags() end)$/;"	f	language:Lua
+) builtin.live_grep	lua/plugins/telescope.lua	/^      mapKey('<leader>fg', function() builtin.live_grep() end)$/;"	f	language:Lua
+_G.toggleWarnings	lua/plugins/lsp.lua	/^function _G.toggleWarnings()$/;"	f	language:Lua
+callback 	lua/config/options.lua	/^  callback = function()$/;"	f	language:Lua
+callback 	lua/plugins/lsp.lua	/^      callback = function()$/;"	f	language:Lua
+config 	lua/plugins/alpha.lua	/^  config = function()$/;"	f	language:Lua
+config 	lua/plugins/bufferline.lua	/^	config = function()$/;"	f	language:Lua
+config 	lua/plugins/conform.lua	/^	config = function()$/;"	f	language:Lua
+config 	lua/plugins/ctags.lua	/^    config = function()$/;"	f	language:Lua
+config 	lua/plugins/kanagawa.lua	/^	config = function()$/;"	f	language:Lua
+config 	lua/plugins/lsp.lua	/^    config = function()$/;"	f	language:Lua
+config 	lua/plugins/lualine.lua	/^	config = function()$/;"	f	language:Lua
+config 	lua/plugins/neo-tree.lua	/^      config = function()$/;"	f	language:Lua
+config 	lua/plugins/neo-tree.lua	/^  config = function()$/;"	f	language:Lua
+config 	lua/plugins/noice.lua	/^    config = function()$/;"	f	language:Lua
+config 	lua/plugins/nvim-cmp.lua	/^		config = function()$/;"	f	language:Lua
+config 	lua/plugins/nvim-treesitter.lua	/^   config = function()$/;"	f	language:Lua
+config 	lua/plugins/nvim-ufo.lua	/^  config = function()$/;"	f	language:Lua
+config 	lua/plugins/telescope.lua	/^    config = function()$/;"	f	language:Lua
+config 	lua/plugins/toggleterm.lua	/^	config = function()$/;"	f	language:Lua
+config 	lua/plugins/vim-illuminate.lua	/^		config = function()$/;"	f	language:Lua
+expand 	lua/plugins/nvim-cmp.lua	/^					expand = function(args)$/;"	f	language:Lua
+local KeyMapper 	lua/utils/KeyMapper.lua	/^local KeyMapper = function(from, to, mode, opts)$/;"	f	language:Lua
+mapKey	lua/plugins/lsp.lua	/^local function mapKey(lhs, rhs, opts)$/;"	f	language:Lua
+on_attach	lua/plugins/lsp.lua	/^local function on_attach(client, bufnr)$/;"	f	language:Lua

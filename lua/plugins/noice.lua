@@ -39,7 +39,7 @@ return {
               winblend = 30,
               winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
             },
-            timeout = 20000,
+            timeout = 5000,
           },
         },
         messages = {

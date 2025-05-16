@@ -1,5 +1,8 @@
--- 🔑 키 매핑 유틸 불러오기
-local keyMapper = require("utils.KeyMapper").mapKey
+-- 🔑 키 매핑 유틸을 vim.keymap.set으로 대체
+local function mapKey(lhs, rhs, opts)
+  opts = opts or {}
+  vim.keymap.set("n", lhs, rhs, opts)
+end
 
 -- 🔔 진단 메시지(경고/에러) 토글 상태 변수
 local showWarnings = true
@@ -11,7 +14,7 @@ function _G.toggleWarnings()
   if showWarnings then
     -- 경고 메시지를 다시 보여줌
     vim.diagnostic.config({
-      virtual_text = true,
+      virtual_text = { severity = { max = vim.diagnostic.severity.HINT } },
       signs = true,
       underline = true,
     })
@@ -27,19 +30,16 @@ function _G.toggleWarnings()
   end
 end
 
--- 💡 경고 토글 단축키를 전역으로 등록 (LSP랑 무관하게 항상 사용 가능)
-keyMapper("<leader>tw", "<cmd>lua toggleWarnings()<CR>")
-
 -- 🧠 LSP 서버가 버퍼에 연결될 때 실행되는 함수
 local function on_attach(client, bufnr)
-  print("✅ LSP attached:", client.name) -- 디버깅용 출력
+  print("✅ LSP attached:", client.name)
 
   local opts = { buffer = bufnr }
 
   -- 🧭 LSP 기능 단축키 설정
-  keyMapper("K", vim.lsp.buf.hover, opts)                -- 문서 호버
-  keyMapper("gd", vim.lsp.buf.definition, opts)          -- 정의로 이동
-  keyMapper("<leader>ca", vim.lsp.buf.code_action, opts) -- 코드 액션
+  mapKey("K", vim.lsp.buf.hover, opts)
+  mapKey("gd", vim.lsp.buf.definition, opts)
+  mapKey("<leader>ca", vim.lsp.buf.code_action, opts)
 
   -- 💾 저장할 때 자동 포맷 실행
   if client.server_capabilities.documentFormattingProvider then
@@ -68,11 +68,11 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "lua_ls",    -- Lua 언어 서버
-          "ts_ls",     -- TypeScript/JavaScript 언어 서버
-          "remark_ls", -- Markdown 관련 서버
-          "clangd",    -- C/C++
-          "pyright",   -- Python
+          "lua_ls",
+          "ts_ls",
+          "remark_ls",
+          "clangd",
+          "pyright",
         },
       })
     end,
@@ -83,32 +83,21 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
+      local servers = { "lua_ls", "ts_ls", "remark_ls", "clangd", "pyright" }
 
-      local servers = {
-        "lua_ls",
-        "ts_ls",
-        "remark_ls",
-        "clangd",
-        "pyright",
-      }
-
-      -- 모든 서버에 공통으로 on_attach 적용
       for _, server in ipairs(servers) do
-        lspconfig[server].setup({
-          on_attach = on_attach,
-        })
+        lspconfig[server].setup({ on_attach = on_attach })
       end
 
-      -- 🛠️ 진단 메시지 기본 설정 (에러, 경고, 힌트 등 표시 방식)
       vim.diagnostic.config({
         virtual_text = {
-          prefix = "●", -- 메시지 앞에 ● 표시
-          severity = { min = vim.diagnostic.severity.HINT }, -- 최소 힌트부터 표시
+          prefix = "●",
+          severity = { max = vim.diagnostic.severity.HINT },
         },
-        signs = true, -- 왼쪽 사인 표시
-        underline = true, -- 밑줄 표시
-        update_in_insert = false, -- 입력 중 업데이트 안 함
-        severity_sort = true, -- 심각도 기준 정렬
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
       })
     end,
   },
@@ -116,7 +105,7 @@ return {
   -- 🔋 fidget.nvim: LSP 로딩 상태 표시
   {
     "j-hui/fidget.nvim",
-    opts = {}, -- 기본 설정 사용
+    opts = {},
   },
 
   -- 🎨 lsp-colors.nvim: LSP 진단 메시지 색 보완
