@@ -2,24 +2,24 @@ local mapKey = require("utils.KeyMapper").mapKey
 
 -- Neotree toggle
 mapKey("<leader>e", function()
-	local is_open = false
+  local is_open = false
 
-	for _, win in ipairs(vim.api.nvim_list_wins()) do
-		local buf = vim.api.nvim_win_get_buf(win)
-		local bufname = vim.api.nvim_buf_get_name(buf)
-		if bufname:match("neo%-tree") then
-			is_open = true
-			break
-		end
-	end
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    local bufname = vim.api.nvim_buf_get_name(buf)
+    if bufname:match("neo%-tree") then
+      is_open = true
+      break
+    end
+  end
 
-	vim.cmd("Neotree toggle")
+  vim.cmd("Neotree toggle")
 
-	if is_open then
-		print("📁 Neo-tree closed!")
-	else
-		print("📂 Neo-tree opened!")
-	end
+  if is_open then
+    print("📁 Neo-tree closed!")
+  else
+    print("📂 Neo-tree opened!")
+  end
 end)
 
 -- pane navigation
@@ -31,14 +31,14 @@ mapKey("<C-l>", "<C-w>l") --Left
 --move directory
 -- <leader>nc: 네오빔 설정 디렉토리로 이동
 vim.keymap.set("n", "<leader>nc", function()
-	vim.cmd("cd ~/.config/nvim")
-	print("📁 Changed to Neovim Config")
+  vim.cmd("cd ~/.config/nvim")
+  print("📁 Changed to Neovim Config")
 end, { noremap = true, silent = true })
 
 -- <leader>ws: 작업 디렉토리로 이동
 vim.keymap.set("n", "<leader>ws", function()
-	vim.cmd("cd /home/rkdgus06/dev")
-	print("📁 Changed to WorkSpace")
+  vim.cmd("cd /mnt/c/dev")
+  print("📁 Changed to WorkSpace")
 end, { noremap = true, silent = true })
 
 -- buffer
@@ -70,6 +70,17 @@ vim.keymap.set("n", "<Leader>O", "O<Esc>", { desc = "Insert new line above witho
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Escape insert mode using jk" })
 --speed limit(max wait time limit)
 vim.opt.timeoutlen = 300
+
+-- ZenMode toggle
+vim.keymap.set("n", "<leader>z", ":ZenMode<CR>", { desc = "Toggle Zen Mode" })
+
+-- twilight toggle
+vim.keymap.set("n", "<leader>tw", ":Twilight<CR>", { desc = "Toggle Twilight only" })
+
+-- focusing mode(ZenMode + twilight)
+vim.keymap.set("n", "<leader>zt", function()
+  vim.cmd("ZenMode")
+end, { desc = "Toggle ZenMode (with Twilight)" })
 
 -- save & quit command
 vim.keymap.set("n", "<Leader>w", ":w<CR>", { desc = "Save file" })

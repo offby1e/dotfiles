@@ -22,11 +22,13 @@ config 	lua/plugins/neo-tree.lua	/^      config = function()$/;"	f	language:Lua
 config 	lua/plugins/neo-tree.lua	/^  config = function()$/;"	f	language:Lua
 config 	lua/plugins/noice.lua	/^    config = function()$/;"	f	language:Lua
 config 	lua/plugins/nvim-cmp.lua	/^		config = function()$/;"	f	language:Lua
-config 	lua/plugins/nvim-treesitter.lua	/^   config = function()$/;"	f	language:Lua
+config 	lua/plugins/nvim-treesitter.lua	/^      config = function()$/;"	f	language:Lua
 config 	lua/plugins/nvim-ufo.lua	/^  config = function()$/;"	f	language:Lua
 config 	lua/plugins/telescope.lua	/^    config = function()$/;"	f	language:Lua
 config 	lua/plugins/toggleterm.lua	/^	config = function()$/;"	f	language:Lua
+config 	lua/plugins/twilight.lua	/^  config = function()$/;"	f	language:Lua
 config 	lua/plugins/vim-illuminate.lua	/^		config = function()$/;"	f	language:Lua
+config 	lua/plugins/zen-mode.lua	/^  config = function()$/;"	f	language:Lua
 expand 	lua/plugins/nvim-cmp.lua	/^					expand = function(args)$/;"	f	language:Lua
 local KeyMapper 	lua/utils/KeyMapper.lua	/^local KeyMapper = function(from, to, mode, opts)$/;"	f	language:Lua
 mapKey	lua/plugins/lsp.lua	/^local function mapKey(lhs, rhs, opts)$/;"	f	language:Lua
