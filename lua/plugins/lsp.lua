@@ -30,6 +30,9 @@ function _G.toggleWarnings()
   end
 end
 
+-- 🔧 단축키 설정 (예: <leader>dw로 토글)
+vim.keymap.set("n", "<leader>dw", toggleWarnings, { desc = "Toggle diagnostics warnings" })
+
 -- 🧠 LSP 서버가 버퍼에 연결될 때 실행되는 함수
 local function on_attach(client, bufnr)
   print("✅ LSP attached:", client.name)
@@ -73,6 +76,7 @@ return {
           "remark_ls",
           "clangd",
           "pyright",
+          "cssls",
         },
       })
     end,
@@ -83,7 +87,7 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
-      local servers = { "lua_ls", "ts_ls", "remark_ls", "clangd", "pyright" }
+      local servers = { "lua_ls", "ts_ls", "remark_ls", "clangd", "pyright", "cssls" }
 
       for _, server in ipairs(servers) do
         lspconfig[server].setup({ on_attach = on_attach })

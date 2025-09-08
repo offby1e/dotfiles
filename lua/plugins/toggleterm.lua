@@ -1,16 +1,32 @@
 return {
-	"akinsho/toggleterm.nvim", -- 플러그인 경로
-	version = "*", -- 버전 설정
-	config = function()
-		require("toggleterm").setup({
-			size = 20, -- 터미널 크기
-			open_mapping = [[<c-\>]], -- 터미널 열기 단축키
-			hide_numbers = true, -- 숫자 숨기기
-			shade_filetypes = {}, -- 특정 파일 타입에 대해 쉐이드 설정
-			shade_terminals = true, -- 터미널 배경 흐리게 처리
-			start_in_insert = true, -- 터미널 시작 시 자동으로 입력 모드
-			insert_mappings = true, -- 터미널 insert 모드에서의 매핑 활성화
-			terminal_mappings = true, -- 터미널 내부 매핑 활성화
-		})
-	end,
+  "akinsho/toggleterm.nvim",
+  version = "*",
+  config = function()
+    require("toggleterm").setup({
+      size = 20,
+      open_mapping = [[<c-\>]],
+      hide_numbers = true,
+      shade_filetypes = {},
+      shade_terminals = true,
+      shade_factor = 2,
+      start_in_insert = true,
+      insert_mappings = true,
+      terminal_mappings = true,
+      direction = "float", -- 플로팅 터미널 사용
+      float_opts = {
+        border = "curved", -- 테두리 스타일: single, double, shadow, curved 등 가능
+        winblend = 5,      -- 배경 투명도
+        highlights = {
+          border = "FloatBorder",
+          background = "NormalFloat",
+        },
+      },
+    })
+
+    -- 테두리 및 배경 색상 하이라이트 설정 (colorscheme에 따라 조절)
+    vim.cmd([[
+      highlight FloatBorder guifg=#7dcfff guibg=#1a1b26
+      highlight NormalFloat guibg=#1a1b26
+    ]])
+  end,
 }
