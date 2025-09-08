@@ -3,16 +3,25 @@ return {
     "hrsh7th/nvim-cmp",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
+      -- Snipetts
       {
         "L3MON4D3/LuaSnip",
         version = "v2.*",
         build = "make install_jsregexp",
+        dependencies = "saadparwaiz1/cmp_luasnip",
       },
-      "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
+
+      -- LSP
       "hrsh7th/cmp-nvim-lsp",
+
+      -- Basic Completion Sources
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "rafamadriz/friendly-snippets",
+
+      -- Copilot
+      "zbirenbaum/copilot.lua",
+      "zbirenbaum/copilot-cmp",
     },
     config = function()
       local cmp = require("cmp")
@@ -21,21 +30,26 @@ return {
       -- load snippets
       require("luasnip.loaders.from_vscode").lazy_load()
 
+      -- Copilot 설정
+      require("copilot").setup({
+        suggestion = { enabled = false }, -- nvim-cmp와 충돌 방지를 위해 인라인 제안 비활성화
+        panel = { enabled = false },      -- 패널 비활성화
+      })
+
+      -- copilot-cmp 설정
+      require("copilot_cmp").setup()
+
       cmp.setup({
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
         },
-        -- window = {
-        -- 	completion = cmp.config.window.bordered(),
-        -- 	documentation = cmp.config.window.bordered(),
-        -- },
         window = {
           completion = cmp.config.window.bordered({
             border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
             winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
-            scrollbar = false, -- 스크롤바 숨기기
+            scrollbar = false,
           }),
           documentation = cmp.config.window.bordered({
             border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
@@ -47,14 +61,15 @@ return {
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
-        -- autocompletion sources
+        -- 자동 완성 소스 우선순위 설정
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },               -- lsp
-          { name = "buffer",  max_item_count = 5 }, -- text within current buffer
-          { name = "path",    max_item_count = 3 }, -- file system paths
-          { name = "luasnip", max_item_count = 3 }, -- snippets
+          { name = "copilot" },  -- 1. Copilot (가장 높은 우선순위)
+          { name = "nvim_lsp" }, -- 2. LSP
+          { name = "luasnip" },  -- 3. Snippets
+          { name = "buffer" },   -- 4. 버퍼
+          { name = "path" },     -- 5. 경로
         }),
       })
     end,
