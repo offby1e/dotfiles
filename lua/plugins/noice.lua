@@ -29,7 +29,7 @@ return {
               col = "98%", -- 오른쪽 끝
             },
             size = {
-              width = 40,
+              width = "auto",
               height = "auto",
             },
             border = {
@@ -39,7 +39,7 @@ return {
               winblend = 30,
               winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
             },
-            timeout = 5000,
+            timeout = 10000,
           },
         },
         messages = {
